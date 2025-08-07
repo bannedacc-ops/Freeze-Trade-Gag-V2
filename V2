@@ -1,13 +1,12 @@
--- Place this LocalScript in StarterGui
+-- LocalScript inside StarterGui
 
--- Create UI elements
 local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui")
 gui.Name = "FakeScriptUI"
 gui.ResetOnSpawn = false
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- Main Frame
+-- Main frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 300, 0, 200)
 frame.Position = UDim2.new(0.5, -150, 0.5, -100)
@@ -18,21 +17,30 @@ frame.Active = true
 frame.Draggable = true
 frame.Parent = gui
 
--- Rounded corners for frame
-local uiCorner = Instance.new("UICorner")
+local uiCorner = Instance.new("UICorner", frame)
 uiCorner.CornerRadius = UDim.new(0, 12)
-uiCorner.Parent = frame
 
 -- Title
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, 0, 0, 40)
-title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundTransparency = 1
 title.Text = "Force Accept / Freeze"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.Font = Enum.Font.SourceSansBold
 title.TextSize = 22
 title.Parent = frame
+
+-- Function to make fake button press effect
+local function setupFakeButton(btn)
+	local originalText = btn.Text
+	btn.MouseButton1Click:Connect(function()
+		btn.Text = "SUCCESS"
+		btn.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+		wait(1.5)
+		btn.Text = originalText
+		btn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	end)
+end
 
 -- Freeze Trade Button
 local freezeBtn = Instance.new("TextButton")
@@ -45,9 +53,8 @@ freezeBtn.Font = Enum.Font.SourceSansBold
 freezeBtn.TextSize = 22
 freezeBtn.Parent = frame
 
-local freezeCorner = Instance.new("UICorner")
-freezeCorner.CornerRadius = UDim.new(0, 10)
-freezeCorner.Parent = freezeBtn
+Instance.new("UICorner", freezeBtn).CornerRadius = UDim.new(0, 10)
+setupFakeButton(freezeBtn)
 
 -- Force Accept Button
 local acceptBtn = Instance.new("TextButton")
@@ -60,6 +67,5 @@ acceptBtn.Font = Enum.Font.SourceSansBold
 acceptBtn.TextSize = 22
 acceptBtn.Parent = frame
 
-local acceptCorner = Instance.new("UICorner")
-acceptCorner.CornerRadius = UDim.new(0, 10)
-acceptCorner.Parent = acceptBtn
+Instance.new("UICorner", acceptBtn).CornerRadius = UDim.new(0, 10)
+setupFakeButton(acceptBtn)
