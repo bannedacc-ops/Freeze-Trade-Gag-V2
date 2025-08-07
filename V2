@@ -1,0 +1,65 @@
+-- Place this LocalScript in StarterGui
+
+-- Create UI elements
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+gui.Name = "FakeScriptUI"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- Main Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 200)
+frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+frame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+frame.BorderSizePixel = 2
+frame.Active = true
+frame.Draggable = true
+frame.Parent = gui
+
+-- Rounded corners for frame
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 12)
+uiCorner.Parent = frame
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "Force Accept / Freeze"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 22
+title.Parent = frame
+
+-- Freeze Trade Button
+local freezeBtn = Instance.new("TextButton")
+freezeBtn.Size = UDim2.new(0.9, 0, 0, 50)
+freezeBtn.Position = UDim2.new(0.05, 0, 0.4, 0)
+freezeBtn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+freezeBtn.Text = "Freeze Trade"
+freezeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+freezeBtn.Font = Enum.Font.SourceSansBold
+freezeBtn.TextSize = 22
+freezeBtn.Parent = frame
+
+local freezeCorner = Instance.new("UICorner")
+freezeCorner.CornerRadius = UDim.new(0, 10)
+freezeCorner.Parent = freezeBtn
+
+-- Force Accept Button
+local acceptBtn = Instance.new("TextButton")
+acceptBtn.Size = UDim2.new(0.9, 0, 0, 50)
+acceptBtn.Position = UDim2.new(0.05, 0, 0.7, 0)
+acceptBtn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+acceptBtn.Text = "Force Accept"
+acceptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+acceptBtn.Font = Enum.Font.SourceSansBold
+acceptBtn.TextSize = 22
+acceptBtn.Parent = frame
+
+local acceptCorner = Instance.new("UICorner")
+acceptCorner.CornerRadius = UDim.new(0, 10)
+acceptCorner.Parent = acceptBtn
